@@ -37,10 +37,11 @@ class ProductController extends Controller
             'category_id' => 'required',
         ]);
 
-        $img_path = $request->file('image')->store('public');
+        $img_name = $request->file('image')->store('public');
 
         $prod = new Product($validatedData);
-        $prod->image = Storage::url($img_path);
+        $prod->image_name = $img_name;
+        $prod->image_url = Storage::url($img_name);
         $prod->save();
         return redirect()->route('products.index');
     }
@@ -62,18 +63,23 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $input = $request->all();
+
         if($request->file('image')){
-            dd($product->image);
-            Storage::delete($product->image);
-            // $img_path = $request->file('image')->store('public');
+            Storage::delete($product->image_name);
+            $img_name = $request->file('image')->store('public');
+            $product->image_name = $img_name;
+            $product->image_url = Storage::url($img_name);
         }
-        $product->fill($request->all());
+
+        $product->fill($input);
         $product->save();
         return redirect()->route('products.index');
     }
 
     public function destroy(Product $product)
     {
+        Storage::delete($product->image_name);
         $product->delete();
         return redirect()->route('products.index');
     }

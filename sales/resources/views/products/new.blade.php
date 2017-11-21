@@ -69,9 +69,9 @@
                         </div>
                     </div>
                 </form>
-                @if($product->image)
+                @if($product->image_url)
                 Current Image
-                <img src="{{ $product->image }}" height="100" width="100" alt="{{ $product->name }}">
+                <img src="{{ $product->image_url }}" height="100" width="100" alt="{{ $product->name }}">
                 @endif
 
             </div>
