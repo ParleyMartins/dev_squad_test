@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -22,6 +23,7 @@ class ProductController extends Controller
             'categories' => $categories,
             'product' => $product,
             'path_name' => route('products.store'),
+            'method' => '',
         ]);
     }
 
@@ -35,12 +37,16 @@ class ProductController extends Controller
             'category_id' => 'required',
         ]);
 
-        $img_path = $request->file('image')->store('products');
+        $img_path = $request->file('image')->store('public');
 
         $prod = new Product($validatedData);
-        $prod->image = $img_path;
+        $prod->image = Storage::url($img_path);
         $prod->save();
         return redirect()->route('products.index');
+    }
+
+    public function show(Product $product){
+
     }
 
     public function edit(Product $product)
@@ -50,16 +56,25 @@ class ProductController extends Controller
             'categories' => $categories,
             'product' => $product,
             'path_name' => route('products.update', $product),
+            'method' => method_field('PATCH'),
         ]);
     }
 
     public function update(Request $request, Product $product)
     {
-        //
+        if($request->file('image')){
+            dd($product->image);
+            Storage::delete($product->image);
+            // $img_path = $request->file('image')->store('public');
+        }
+        $product->fill($request->all());
+        $product->save();
+        return redirect()->route('products.index');
     }
 
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
