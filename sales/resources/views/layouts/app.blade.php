@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ route('products.index') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -77,5 +77,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://unpkg.com/vue"></script>
 </body>
 </html>

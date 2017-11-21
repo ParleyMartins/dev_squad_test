@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<example-component></example-component>
 <div class="container">
     <div class="panel panel-default">
         <div class="row">
@@ -49,17 +50,19 @@
                             </a>
                         </td>
                         <td>
-                            <form method="delete" action="{{ route('products.destroy', $prod) }}">
-
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
+                            <form method="post" action="{{ route('products.destroy', $prod) }}">
+                                {{ method_field('DELETE') }}
+                                {!! csrf_field() !!}
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
                     @endforeach
                 </table>
                 @endif
+                <br>
             </div>
         </div>
     </div>
