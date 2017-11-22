@@ -42863,23 +42863,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['initial'],
+	props: ['initial', 'categories'],
 
 	data: function data() {
+		var cats = {};
+		this.categories.forEach(function (cat) {
+			cats[cat.id] = cat.name;
+		});
+
 		return {
-			prods: this.initial
+			prods: this.initial,
+			cats: cats
 		};
 	},
-
-	// mounted() {
-	// 	this.products = this.products;
-	// },
-
-	// computed: {
-	// 	products() {
-	// 		return this.initial-products;
-	// 	}
-	// },
 
 	methods: {
 		// products
@@ -42937,7 +42933,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", [
-                _vm._v("\n\t\t\t\t" + _vm._s(prod.category_id) + "\n\t\t\t")
+                _vm._v(
+                  "\n\t\t\t\t" + _vm._s(_vm.cats[prod.category_id]) + "\n\t\t\t"
+                )
               ]),
               _vm._v(" "),
               _c("td", [
