@@ -25,8 +25,6 @@ class ProductController extends Controller
         return view('products.new', [
             'categories' => $categories,
             'product' => $product,
-            'path_name' => route('products.store'),
-            'method' => '',
         ]);
     }
 
@@ -55,14 +53,13 @@ class ProductController extends Controller
         return view('products.new', [
             'categories' => $categories,
             'product' => $product,
-            'path_name' => route('products.update', $product),
-            'method' => method_field('PATCH'),
         ]);
     }
 
     public function update(Request $request, Product $product)
     {
         $input = $request->all();
+        dd($input);
 
         if($request->file('image')){
             Storage::delete($product->image_name);

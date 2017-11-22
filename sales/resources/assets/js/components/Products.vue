@@ -58,7 +58,6 @@
 		},
 
 		methods: {
-			// products
 			editUrl(prod){
 				return "/products/" + prod + "/edit";
 			},
