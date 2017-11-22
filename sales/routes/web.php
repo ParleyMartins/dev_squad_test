@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function (){
-	Route::resource('products', 'ProductController');
+	Route::resource('products', 'ProductController',  ['except' => ['show']]);
+	Route::post('products/import', 'ProductController@import')->name('products.import');
+	Route::get('products/import', 'ProductController@viewImport')->name('products.viewImport');
 	Route::resource('categories', 'CategoryController');
 });

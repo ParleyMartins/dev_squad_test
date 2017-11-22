@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control" id="price" name="price" placeholder="Price" value="{{ old('price', $product->price) }}">
+                            <input type="number" placeholder="1.0" step="0.01" min="0" max=9999.99 class="form-control" id="price" name="price" placeholder="Price" value="{{ old('price', $product->price) }}">
                         </div>
                     </div>
                     <div class="row">
@@ -55,6 +55,7 @@
                         </div>
                     </div>
 
+                    <br>
                     <div class="row">
                         <div class="col-md-4 col-md-offset-8">
 
@@ -73,6 +74,7 @@
                 Current Image
                 <img src="{{ $product->image_url }}" height="100" width="100" alt="{{ $product->name }}">
                 @endif
+                <br>
 
             </div>
         </div>

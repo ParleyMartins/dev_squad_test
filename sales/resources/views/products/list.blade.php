@@ -1,17 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<example-component></example-component>
 <div class="container">
     <div class="panel panel-default">
         <div class="row">
-            <div class="col-md-6 col-md-offset-2">
+            <div class="col-md-4 col-md-offset-2">
                 <h1>Products</h1>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <h1><a class="btn btn-primary" href="{{ route('products.create') }}">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     New Product
+                </a></h1>
+            </div>
+            <div class="col-md-2">
+                <h1><a class="btn btn-default" href="{{ route('products.viewImport') }}">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    Import Data
                 </a></h1>
             </div>
         </div>

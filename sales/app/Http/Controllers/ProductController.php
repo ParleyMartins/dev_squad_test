@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'price' => 'required',
+            'price' => 'required|numeric|max:10000',
             'description' => 'required',
             'image' => 'required',
             'category_id' => 'required',
@@ -44,10 +44,6 @@ class ProductController extends Controller
         $prod->image_url = Storage::url($img_name);
         $prod->save();
         return redirect()->route('products.index');
-    }
-
-    public function show(Product $product){
-
     }
 
     public function edit(Product $product)
@@ -81,6 +77,15 @@ class ProductController extends Controller
     {
         Storage::delete($product->image_name);
         $product->delete();
+        return redirect()->route('products.index');
+    }
+
+    public function viewImport(Request $request){
+        return view('products.import');
+    }
+
+    public function import(Request $request){
+        $request->file('import_data')->store('imports');
         return redirect()->route('products.index');
     }
 }
