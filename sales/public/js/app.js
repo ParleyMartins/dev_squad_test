@@ -42857,6 +42857,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['initial'],
@@ -42908,12 +42912,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.prods.length > 0
-    ? _c(
-        "table",
-        { staticClass: "table" },
-        [
-          _vm._m(0, false, false),
-          _vm._v(" "),
+    ? _c("table", { staticClass: "table" }, [
+        _vm._m(0, false, false),
+        _vm._v(" "),
+        _c(
+          "tbody",
           _vm._l(_vm.prods, function(prod) {
             return _c("tr", [
               _c("td", [
@@ -42927,12 +42930,14 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v("\n\t\t\t" + _vm._s(prod.name) + "\n\t\t")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("\n\t\t\t" + _vm._s(prod.price) + "\n\t\t")]),
+              _c("td", [_vm._v("\n\t\t\t\t" + _vm._s(prod.name) + "\n\t\t\t")]),
               _vm._v(" "),
               _c("td", [
-                _vm._v("\n\t\t\t" + _vm._s(prod.category_id) + "\n\t\t")
+                _vm._v("\n\t\t\t\t" + _vm._s(prod.price) + "\n\t\t\t")
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v("\n\t\t\t\t" + _vm._s(prod.category_id) + "\n\t\t\t")
               ]),
               _vm._v(" "),
               _c("td", [
@@ -42974,9 +42979,8 @@ var render = function() {
               ])
             ])
           })
-        ],
-        2
-      )
+        )
+      ])
     : _c("span", [_vm._v("No products to show")])
 }
 var staticRenderFns = [
@@ -42984,18 +42988,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Image")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Price")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Category")]),
-      _vm._v(" "),
-      _c("th"),
-      _vm._v(" "),
-      _c("th")
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Category")]),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th")
+      ])
     ])
   }
 ]
