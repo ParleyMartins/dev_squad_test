@@ -9,37 +9,18 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.list', ['categories' => $categories]);
-    }
+        $cats = Category::all();
 
-    public function create()
-    {
-        //
-    }
+        $categories = [];
+        foreach ($cats as $cat) {
+            $categories[$cat->id] = $cat->name;
+        }
 
-    public function store(Request $request)
-    {
-        //
+        return $categories;
     }
 
     public function show(Category $category)
     {
-        //
-    }
-
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
-
-    public function destroy(Category $category)
-    {
-        //
+        return $category;
     }
 }

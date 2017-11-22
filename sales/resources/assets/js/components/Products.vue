@@ -22,7 +22,7 @@
 					{{ prod.price }}
 				</td>
 				<td>
-					{{ prod.category_id }}
+					{{ cats[prod.category_id] }}
 				</td>
 				<td>
 					<a class="btn btn-default" :href="editUrl(prod.id)">
@@ -43,23 +43,19 @@
 
 <script>
 	export default {
-		props: ['initial',],
+		props: ['initial', 'categories'],
 
 		data: function() {
+			var cats = {}
+			this.categories.forEach(function(cat){
+				cats[cat.id] = cat.name
+			});
+
 			return {
 				prods: this.initial,
+				cats: cats,
 			}
 		},
-
-		// mounted() {
-		// 	this.products = this.products;
-		// },
-
-		// computed: {
-		// 	products() {
-		// 		return this.initial-products;
-		// 	}
-		// },
 
 		methods: {
 			// products

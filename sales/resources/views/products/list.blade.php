@@ -23,12 +23,9 @@
         <br>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                @if (count($products) === 0)
-                No products to show
-                @else
-                <products-table :initial="{{ $products }}"></products-table>
-                @endif
-                <br>
+                <products-table
+                    :initial="{{ $products }}"
+                    :categories="{{ $categories }}"></products-table>
             </div>
         </div>
     </div>

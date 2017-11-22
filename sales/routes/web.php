@@ -23,5 +23,6 @@ Route::middleware(['auth'])->group(function (){
 	Route::resource('products', 'ProductController',  ['except' => ['show']]);
 	Route::post('products/import', 'ProductController@import')->name('products.import');
 	Route::get('products/import', 'ProductController@viewImport')->name('products.viewImport');
-	Route::resource('categories', 'CategoryController');
+	Route::get('/categories/', 'CategoryController@index')->name('categories.index');
+	Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
 });

@@ -12,7 +12,15 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.list', ['products' => $products]);
+        $categories = Category::all();
+
+        // $categories = [];
+        // foreach ($cats as $cat) {
+        //     $categories[$cat->id] = $cat->name;
+        // }
+
+        return view('products.list',
+            ['products' => $products, 'categories' => $categories]);
     }
 
     public function create()
