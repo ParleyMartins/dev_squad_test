@@ -14,11 +14,6 @@ class ProductController extends Controller
         $products = Product::all();
         $categories = Category::all();
 
-        // $categories = [];
-        // foreach ($cats as $cat) {
-        //     $categories[$cat->id] = $cat->name;
-        // }
-
         return view('products.list',
             ['products' => $products, 'categories' => $categories]);
     }
