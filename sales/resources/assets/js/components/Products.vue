@@ -54,6 +54,7 @@
 			return {
 				prods: this.initial,
 				cats: cats,
+				errors: {},
 			}
 		},
 
@@ -67,8 +68,8 @@
 				let url = '/products/' + prod.id;
 				if(confirmation){
 					axios.delete(url)
-					.catch(error => {
-						console.log(error)
+					.then(response => {
+						console.log(response)
 						this.prods = this.prods.filter(function(obj){
 							return obj != prod;
 						});

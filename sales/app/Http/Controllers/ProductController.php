@@ -30,13 +30,19 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'price' => 'required|numeric|max:10000',
-            'description' => 'required',
-            'image' => 'required',
-            'category_id' => 'required',
-        ]);
+        // $validatedData = $request->all();
+        $input = $request->all();
+
+
+        // validate([
+        //     'name' => 'required|max:255',
+        //     'price' => 'required|numeric|max:10000',
+        //     'description' => 'required',
+        //     // 'image' => 'required',
+        //     'category_id' => 'required',
+        // ]);
+
+        return response()->json($request->all(), 400);
 
         $img_name = $request->file('image')->store('public');
 
@@ -44,7 +50,9 @@ class ProductController extends Controller
         $prod->image_name = $img_name;
         $prod->image_url = Storage::url($img_name);
         $prod->save();
-        return redirect()->route('products.index');
+        // return redirect()->route('products.index');
+        return response()->json('OK');
+
     }
 
     public function edit(Product $product)
@@ -59,7 +67,6 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $input = $request->all();
-        dd($input);
 
         if($request->file('image')){
             Storage::delete($product->image_name);
@@ -70,14 +77,16 @@ class ProductController extends Controller
 
         $product->fill($input);
         $product->save();
-        return redirect()->route('products.index');
+
+        return response()->json('OK');
     }
 
     public function destroy(Product $product)
     {
         Storage::delete($product->image_name);
         $product->delete();
-        return redirect()->route('products.index');
+        return response()->json('OK');
+        // return redirect()->route('products.index');
     }
 
     public function viewImport(Request $request){
